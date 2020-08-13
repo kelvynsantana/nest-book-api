@@ -5,6 +5,7 @@ import {
   Body,
   Param,
   BadRequestException,
+  Delete,
 } from '@nestjs/common';
 import { BookDTO } from 'src/dtos/book.dto';
 import { BooksService } from 'src/Services/books/books.service';
@@ -31,5 +32,10 @@ export class BooksController {
   @Post()
   async createBook(@Body() newBook: BookDTO): Promise<Book> {
     return await this.bookService.createBook(newBook);
+  }
+
+  @Delete(':id')
+  async deleteBook(@Param('id') bookId: string): Promise<void> {
+    return await this.bookService.deleteBook(bookId);
   }
 }

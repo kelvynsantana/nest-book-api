@@ -22,4 +22,8 @@ export class BookRepository {
     const books = await this.bookModel.find({}, { __v: false });
     return books;
   }
+
+  async deleteBook(bookId: string): Promise<Book> {
+    return await this.bookModel.findOneAndDelete({ _id: bookId });
+  }
 }
